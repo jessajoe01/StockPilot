@@ -5,6 +5,7 @@ __pycache__/
 node_modules/
 build/
 dist/
+.vscode/
 Thumbs.db
 desktop.ini
 documents/
