@@ -32,6 +32,10 @@ def create_app():
     # Set up JWT authentication (used later in the Auth module)
     JWTManager(app)
 
+    # Register the auth routes (register/login) under /api/auth/...
+    from app.routes.auth_routes import auth_bp
+    app.register_blueprint(auth_bp)
+
     # Simple test route to confirm the server is alive
     @app.route('/api/health')
     def health_check():

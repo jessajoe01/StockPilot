@@ -1,5 +1,6 @@
 import os
 from dotenv import load_dotenv
+from sqlalchemy import URL
 
 # Load variables from the .env file into the environment
 load_dotenv()
@@ -20,10 +21,13 @@ class Config:
     DB_PASSWORD = os.getenv('DB_PASSWORD')
     DB_NAME = os.getenv('DB_NAME')
 
-    # SQLAlchemy connection string
-    # Format: mysql+pymysql://username:password@host/database_name
-    SQLALCHEMY_DATABASE_URI = (
-        f"mysql+pymysql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}/{DB_NAME}"
+    # SQLAlchemy database connection
+    SQLALCHEMY_DATABASE_URI = URL.create(
+        drivername="mysql+pymysql",
+        username=DB_USER,
+        password=DB_PASSWORD,
+        host=DB_HOST,
+        database=DB_NAME
     )
 
     # Disable unnecessary modification tracking
