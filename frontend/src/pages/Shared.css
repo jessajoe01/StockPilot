@@ -1,0 +1,236 @@
+/* ============ FORM ELEMENTS (used inside modals) ============ */
+
+.form-field {
+  margin-bottom: 1.1rem;
+}
+
+.form-label {
+  display: block;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #0F1729;
+  margin-bottom: 0.35rem;
+}
+
+.form-input {
+  width: 100%;
+  padding: 0.6rem 0.8rem;
+  font-size: 0.9rem;
+  font-family: var(--font-body, 'Inter', sans-serif);
+  border: 1.5px solid #E5E7EB;
+  border-radius: 8px;
+  outline: none;
+  box-sizing: border-box;
+  resize: vertical;
+}
+
+.form-input:focus {
+  border-color: #0F1729;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.6rem;
+  margin-top: 1.5rem;
+}
+
+.btn-primary {
+  padding: 0.6rem 1.2rem;
+  background: #0F1729;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: #1A2540;
+}
+
+.btn-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn-secondary {
+  padding: 0.6rem 1.2rem;
+  background: #FFFFFF;
+  color: #374151;
+  border: 1.5px solid #E5E7EB;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-secondary:hover {
+  border-color: #9CA3AF;
+}
+
+.btn-danger-text {
+  color: #DC2626;
+}
+
+.form-error {
+  background: #FEF2F2;
+  color: #DC2626;
+  font-size: 0.85rem;
+  padding: 0.6rem 0.8rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+/* ============ PAGE HEADER (used at top of every module page) ============ */
+
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.75rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.page-title {
+  font-family: var(--font-display, 'Space Grotesk', sans-serif);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #0F1729;
+  margin: 0;
+}
+
+.page-subtitle {
+  font-size: 0.875rem;
+  color: #6B7280;
+  margin-top: 0.25rem;
+}
+
+.page-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.search-input {
+  padding: 0.55rem 0.9rem;
+  font-size: 0.875rem;
+  border: 1.5px solid #E5E7EB;
+  border-radius: 8px;
+  width: 260px;
+  outline: none;
+  background: #FFFFFF;
+}
+
+.search-input:focus {
+  border-color: #0F1729;
+}
+
+/* ============ DATA TABLE (used for every module's list view) ============ */
+
+.data-table-wrapper {
+  background: #FFFFFF;
+  border-radius: 12px;
+  border: 1px solid #E5E7EB;
+  overflow: hidden;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.data-table thead {
+  background: #F7F8FA;
+}
+
+.data-table th {
+  text-align: left;
+  padding: 0.75rem 1.25rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #6B7280;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  border-bottom: 1px solid #E5E7EB;
+}
+
+.data-table td {
+  padding: 0.85rem 1.25rem;
+  font-size: 0.875rem;
+  color: #1F2937;
+  border-bottom: 1px solid #F0F1F3;
+}
+
+.data-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.data-table tbody tr:hover {
+  background: #FAFBFC;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.status-badge.active {
+  background: #F0FDF4;
+  color: #16A34A;
+}
+
+.status-badge.inactive {
+  background: #F3F4F6;
+  color: #6B7280;
+}
+
+.status-badge.low-stock {
+  background: #FFFBEB;
+  color: #D97706;
+}
+
+.status-badge.out-of-stock {
+  background: #FEF2F2;
+  color: #DC2626;
+}
+
+.table-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.icon-btn {
+  background: none;
+  border: none;
+  padding: 0.3rem 0.5rem;
+  border-radius: 6px;
+  font-size: 0.8125rem;
+  color: #6B7280;
+  cursor: pointer;
+  font-family: var(--font-body, 'Inter', sans-serif);
+}
+
+.icon-btn:hover {
+  background: #F3F4F6;
+  color: #0F1729;
+}
+
+.icon-btn.danger:hover {
+  background: #FEF2F2;
+  color: #DC2626;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: #9CA3AF;
+  font-size: 0.9rem;
+}

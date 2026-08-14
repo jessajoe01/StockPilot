@@ -65,7 +65,7 @@ export default function Register() {
                 className="auth-input"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                placeholder="Jessa Rao"
+                placeholder="Jessa Joe"
                 autoComplete="name"
               />
             </div>

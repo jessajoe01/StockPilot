@@ -1,13 +1,13 @@
 import { useAuth } from '../context/AuthContext';
+import AppLayout from '../components/AppLayout';
 
 export default function Dashboard() {
-  const { user, logout } = useAuth();
+  const { user } = useAuth();
 
   return (
-    <div>
-      <h1>Welcome, {user?.name}</h1>
-      <p>Role: {user?.role}</p>
-      <button onClick={logout}>Logout</button>
-    </div>
+    <AppLayout>
+      <h1 className="page-title">Welcome, {user?.name}</h1>
+      <p className="page-subtitle">Role: {user?.role}</p>
+    </AppLayout>
   );
 }

@@ -36,6 +36,14 @@ def create_app():
     from app.routes.auth_routes import auth_bp
     app.register_blueprint(auth_bp)
 
+    # Register the category routes under /api/categories/...
+    from app.routes.category_routes import category_bp
+    app.register_blueprint(category_bp)
+
+    # Register the product routes under /api/products/...
+    from app.routes.product_routes import product_bp
+    app.register_blueprint(product_bp)
+
     # Simple test route to confirm the server is alive
     @app.route('/api/health')
     def health_check():
