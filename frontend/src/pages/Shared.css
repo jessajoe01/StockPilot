@@ -136,7 +136,7 @@
   background: #FFFFFF;
   border-radius: 12px;
   border: 1px solid #E5E7EB;
-  overflow: hidden;
+  overflow-x: auto;
 }
 
 .data-table {
@@ -150,20 +150,22 @@
 
 .data-table th {
   text-align: left;
-  padding: 0.75rem 1.25rem;
-  font-size: 0.75rem;
+  padding: 0.75rem 1rem;
+  font-size: 0.72rem;
   font-weight: 600;
   color: #6B7280;
   text-transform: uppercase;
   letter-spacing: 0.03em;
   border-bottom: 1px solid #E5E7EB;
+  white-space: nowrap;
 }
 
 .data-table td {
-  padding: 0.85rem 1.25rem;
+  padding: 0.85rem 1rem;
   font-size: 0.875rem;
   color: #1F2937;
   border-bottom: 1px solid #F0F1F3;
+  white-space: nowrap;
 }
 
 .data-table tbody tr:last-child td {

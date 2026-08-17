@@ -1,10 +1,12 @@
 import { useState, useEffect, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 import AppLayout from '../components/AppLayout';
 import CategoryFormModal from '../components/CategoryFormModal';
 import { categoryService } from '../services/categoryService';
 import './Shared.css';
 
 export default function Categories() {
+  const navigate = useNavigate();
   const [categories, setCategories] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
@@ -25,6 +27,11 @@ export default function Categories() {
       setIsLoading(false);
     }
   }, []);
+
+  // Load categories once on first render
+  useEffect(() => {
+    loadCategories('');
+  }, [loadCategories]);
 
   // Debounce search: wait 400ms after the user stops typing before calling the API,
   // so we're not firing a request on every single keystroke
@@ -60,7 +67,7 @@ export default function Categories() {
 
     try {
       await categoryService.remove(category.category_id);
-      loadCategories(searchTerm);
+      await loadCategories(searchTerm);
     } catch (err) {
       alert(err.response?.data?.error || 'Could not delete this category.');
     }
@@ -69,7 +76,7 @@ export default function Categories() {
   const handleToggleStatus = async (category) => {
     try {
       await categoryService.toggleStatus(category.category_id);
-      loadCategories(searchTerm);
+      await loadCategories(searchTerm);
     } catch (err) {
       alert('Could not update status.');
     }
@@ -124,6 +131,9 @@ export default function Categories() {
                   </td>
                   <td>
                     <div className="table-actions">
+                      <button className="icon-btn" onClick={() => navigate(`/products?category_id=${category.category_id}`)}>
+                        View Products
+                      </button>
                       <button className="icon-btn" onClick={() => handleEditClick(category)}>Edit</button>
                       <button className="icon-btn" onClick={() => handleToggleStatus(category)}>
                         {category.status === 'Active' ? 'Deactivate' : 'Activate'}

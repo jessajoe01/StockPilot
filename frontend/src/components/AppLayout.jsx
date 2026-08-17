@@ -6,6 +6,7 @@ const navItems = [
   { path: '/dashboard', label: 'Dashboard' },
   { path: '/categories', label: 'Categories' },
   { path: '/products', label: 'Products' },
+  { path: '/suppliers', label: 'Suppliers' },
 ];
 
 export default function AppLayout({ children }) {
@@ -34,19 +35,24 @@ export default function AppLayout({ children }) {
             </NavLink>
           ))}
         </nav>
-
-        <div className="app-sidebar-footer">
-          <div className="app-user-info">
-            <div className="app-user-name">{user?.name}</div>
-            <div className="app-user-role">{user?.role}</div>
-          </div>
-          <button className="app-logout-btn" onClick={logout}>Log out</button>
-        </div>
       </aside>
 
-      <main className="app-content">
-        {children}
-      </main>
+      <div className="app-main">
+        <header className="app-topbar">
+          <div className="app-topbar-spacer" />
+          <div className="app-topbar-user">
+            <div className="app-user-info">
+              <div className="app-user-name">{user?.name}</div>
+              <div className="app-user-role">{user?.role}</div>
+            </div>
+            <button className="app-logout-btn" onClick={logout}>Log out</button>
+          </div>
+        </header>
+
+        <main className="app-content">
+          {children}
+        </main>
+      </div>
     </div>
   );
 }
