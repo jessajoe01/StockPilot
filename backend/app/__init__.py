@@ -48,6 +48,10 @@ def create_app():
     from app.routes.supplier_routes import supplier_bp
     app.register_blueprint(supplier_bp)
 
+    # Register the customer routes under /api/customers/...
+    from app.routes.customer_routes import customer_bp
+    app.register_blueprint(customer_bp)
+
     # Simple test route to confirm the server is alive
     @app.route('/api/health')
     def health_check():

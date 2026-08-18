@@ -16,7 +16,8 @@ export default function Products() {
   const [isLoading, setIsLoading] = useState(true);
   const [pageError, setPageError] = useState('');
 
-  // Filter state 
+  // Filter state — category_id / supplier_id can arrive pre-set from the URL
+  // (e.g. clicked "View Products" from the Categories or Suppliers page)
   const [searchTerm, setSearchTerm] = useState('');
   const [categoryFilter, setCategoryFilter] = useState(searchParams.get('category_id') || '');
   const [supplierFilter, setSupplierFilter] = useState(searchParams.get('supplier_id') || '');
@@ -26,7 +27,7 @@ export default function Products() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingProduct, setEditingProduct] = useState(null);
 
-  // Load categories and suppliers once, for both the filter dropdown and the form dropdown
+  // Load categories and suppliers once, for both the filter dropdowns and display names
   useEffect(() => {
     categoryService.getAll().then(setCategories).catch(() => setCategories([]));
     supplierService.getAll().then(setSuppliers).catch(() => setSuppliers([]));
@@ -59,20 +60,12 @@ export default function Products() {
     return () => clearTimeout(timer);
   }, [loadProducts]);
 
-  // Keep the URL in sync with the category and supplier filter, so the filtered view is shareable/bookmarkable
+  // Keep the URL in sync with active filters, so the filtered view is shareable/bookmarkable
   useEffect(() => {
     const params = {};
-
-    if (categoryFilter) {
-        params.category_id = categoryFilter;
-    }
-
-    if (supplierFilter) {
-        params.supplier_id = supplierFilter;
-    }
-
+    if (categoryFilter) params.category_id = categoryFilter;
+    if (supplierFilter) params.supplier_id = supplierFilter;
     setSearchParams(params);
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [categoryFilter, supplierFilter]);
 
@@ -117,7 +110,7 @@ export default function Products() {
 
     try {
       await productService.remove(product.product_id);
-      loadProducts();
+      await loadProducts();
     } catch (err) {
       alert(err.response?.data?.error || 'Could not delete this product.');
     }
@@ -126,7 +119,7 @@ export default function Products() {
   const handleToggleStatus = async (product) => {
     try {
       await productService.toggleStatus(product.product_id);
-      loadProducts();
+      await loadProducts();
     } catch (err) {
       alert('Could not update status.');
     }
@@ -170,11 +163,9 @@ export default function Products() {
           onChange={(e) => setSupplierFilter(e.target.value)}
         >
           <option value="">All Suppliers</option>
-          {suppliers.map((supplier) => (
-            <option key={supplier.supplier_id} value={supplier.supplier_id}>
-              {supplier.supplier_name}
-            </option>
-        ))}
+          {suppliers.map((sup) => (
+            <option key={sup.supplier_id} value={sup.supplier_id}>{sup.supplier_name}</option>
+          ))}
         </select>
 
         <select
@@ -197,15 +188,9 @@ export default function Products() {
           Low stock only
         </label>
 
-        {categoryFilter && (
-          <button className="icon-btn" onClick={() => setCategoryFilter('')}>
-            Clear category filter ×
-          </button>
-        )}
-
-        {supplierFilter && (
-          <button className="icon-btn" onClick={() => setSupplierFilter('')}>
-            Clear supplier filter ×
+        {(categoryFilter || supplierFilter) && (
+          <button className="icon-btn" onClick={() => { setCategoryFilter(''); setSupplierFilter(''); }}>
+            Clear filters ×
           </button>
         )}
       </div>

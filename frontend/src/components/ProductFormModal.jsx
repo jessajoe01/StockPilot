@@ -65,6 +65,16 @@ export default function ProductFormModal({ isOpen, onClose, onSave, editingProdu
       return;
     }
 
+    if (Number(form.purchase_price) < 0 || Number(form.selling_price) < 0) {
+      setError('Prices cannot be negative.');
+      return;
+    }
+
+    if (Number(form.quantity) < 0 || Number(form.minimum_stock_level) < 0) {
+      setError('Stock values cannot be negative.');
+      return;
+    }
+
     setIsSubmitting(true);
     try {
       const payload = {
@@ -142,20 +152,20 @@ export default function ProductFormModal({ isOpen, onClose, onSave, editingProdu
         </div>
 
         <div className="form-field">
-            <label className="form-label" htmlFor="supplier_id">Supplier</label>
-            <select
-                id="supplier_id"
-                className="form-input"
-                value={form.supplier_id}
-                onChange={handleChange('supplier_id')}
-            >
-                <option value="">— No supplier —</option>
-                {suppliers.map((supplier) => (
-                    <option key={supplier.supplier_id} value={supplier.supplier_id}>
-                     {supplier.supplier_name}
-                    </option>
-                ))}
-            </select>
+          <label className="form-label" htmlFor="supplier_id">Supplier</label>
+          <select
+            id="supplier_id"
+            className="form-input"
+            value={form.supplier_id}
+            onChange={handleChange('supplier_id')}
+          >
+            <option value="">— No supplier —</option>
+            {suppliers.map((sup) => (
+              <option key={sup.supplier_id} value={sup.supplier_id}>
+                {sup.supplier_name}
+              </option>
+            ))}
+          </select>
         </div>
 
         <div className="form-field">

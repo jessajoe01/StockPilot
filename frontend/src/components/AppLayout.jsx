@@ -7,6 +7,7 @@ const navItems = [
   { path: '/categories', label: 'Categories' },
   { path: '/products', label: 'Products' },
   { path: '/suppliers', label: 'Suppliers' },
+  { path: '/customers', label: 'Customers' },
 ];
 
 export default function AppLayout({ children }) {
