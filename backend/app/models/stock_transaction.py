@@ -8,14 +8,13 @@ class StockTransaction(db.Model):
     transaction_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     product_id = db.Column(db.Integer, db.ForeignKey('products.product_id'), nullable=False)
     transaction_type = db.Column(
-        db.Enum('Stock In', 'Sale', 'Cancellation Return', 'Adjustment'),
+        db.Enum('Stock In', 'Stock Out', 'Sale', 'Cancellation Return', 'Adjustment'),
         nullable=False
     )
     quantity = db.Column(db.Integer, nullable=False)
     transaction_date = db.Column(db.TIMESTAMP, default=datetime.utcnow)
     notes = db.Column(db.String(255))
 
-    # Many stock transactions can belong to one product
     product = db.relationship('Product', backref='stock_transactions')
 
     def to_dict(self):
